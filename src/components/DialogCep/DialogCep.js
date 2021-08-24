@@ -31,14 +31,20 @@ function TextMaskCustom(props) {
 	);
 }
 
-const DialogCep = ({ open, setOpen, cart }) => {
+const DialogCep = ({ open, setOpen, cart, request = false }) => {
 	const [cep, setCep] = useState(
 		localStorage.getItem('cep') ? localStorage.getItem('cep') : '',
 	);
-
 	const [formatMessage, setFormatMessage] = useState(
 		'Além disso, gostei dos produtos abaixo:',
 	);
+	const [formatMessageRequest, setFormatMessageRequest] = useState(
+		'Olá, gostei dos produtos abaixo:%0A',
+	);
+
+	useEffect(() => {
+		setCep(localStorage.getItem('cep') ? localStorage.getItem('cep') : '');
+	}, [open]);
 
 	const handleClose = () => {
 		if (
@@ -46,10 +52,10 @@ const DialogCep = ({ open, setOpen, cart }) => {
 			/^-?\d+$/.test(cep.split('-')[1]) === false
 		) {
 			localStorage.removeItem('cep');
-			setCep('');
 			// setSedexValue('');
 			// setPacValue('');
 		}
+		setCep('');
 		setOpen(false);
 	};
 
@@ -111,8 +117,18 @@ const DialogCep = ({ open, setOpen, cart }) => {
 	useEffect(() => {
 		if (cart.length) {
 			let newMessage = ['Além disso, gostei dos produtos abaixo: '];
+			let newMessageRequest = ['Olá, gostei dos produtos abaixo:'];
 			cart.forEach((obj, index) => {
 				newMessage.push(
+					`%0A*${index + 1}) ${obj.name.toUpperCase()} (cód: ${
+						obj.id
+					})*%0A      Quantidade: ${obj.quantity}%0A      Tamanho: ${
+						obj.size
+					}%0A      Total: *${ConvertToBrl(
+						obj.quantity * obj.price,
+					)}*%0A`,
+				);
+				newMessageRequest.push(
 					`%0A*${index + 1}) ${obj.name.toUpperCase()} (cód: ${
 						obj.id
 					})*%0A      Quantidade: ${obj.quantity}%0A      Tamanho: ${
@@ -128,6 +144,12 @@ const DialogCep = ({ open, setOpen, cart }) => {
 					reducedValues,
 				)} %2b FRETE* %0A%0A **FRETE: Ipaussu e Chavantes entrega grátis. Demais cidades à combinar.*`,
 			);
+			newMessageRequest.push(
+				`%0A*Valor total: ${ConvertToBrl(
+					reducedValues,
+				)} %2b FRETE PARA ${cep}* %0A%0A **FRETE: Ipaussu e Chavantes entrega grátis. Demais cidades à combinar.*`,
+			);
+			setFormatMessageRequest(newMessageRequest.join(''));
 			setFormatMessage(newMessage.join(''));
 		}
 	}, [cart]);
@@ -151,6 +173,22 @@ const DialogCep = ({ open, setOpen, cart }) => {
 								value={cep}
 								onChange={(e) => {
 									setCep(e.target.value);
+									if (
+										/^-?\d+$/.test(
+											e.target.value.split('-')[0],
+										) === true ||
+										/^-?\d+$/.test(
+											e.target.value.split('-')[1],
+										) === true
+									) {
+										localStorage.setItem(
+											'cep',
+											e.target.value,
+										);
+
+										// setSedexValue('');
+										// setPacValue('');
+									}
 								}}
 								name="textmask"
 								variant="outlined"
@@ -208,13 +246,19 @@ const DialogCep = ({ open, setOpen, cart }) => {
 				>
 					<FaWhatsapp />
 					<a
-						href={`https://wa.me/+5514981333862/?text=Olá, gostaria de saber mais informações sobre a entrega e frete para o meu CEP: *${cep}*%0A%0A${
-							cart.length > 0 && formatMessage
+						href={`https://wa.me/+5514981333862/?text=${
+							request
+								? formatMessageRequest
+								: `Olá, gostaria de saber mais informações sobre a entrega e frete para o meu CEP: *${cep}*%0A%0A${
+										cart.length > 0 && formatMessage
+								  }`
 						}`}
 						target="_blank"
 						rel="noreferrer"
 					>
-						Confirmar e enviar CEP
+						{request
+							? 'Confirmar e enviar pedido'
+							: 'Confirmar e enviar CEP'}
 					</a>
 				</Button>
 			</DialogActions>

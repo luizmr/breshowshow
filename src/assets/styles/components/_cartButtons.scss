@@ -95,7 +95,8 @@
 			color: rgb(64, 199, 114);
 		}
 		.MuiButton-label {
-			a {
+			a,
+			p {
 				color: $secondary-bg-color;
 			}
 			svg {
