@@ -78,7 +78,7 @@ const DialogCep = ({
 		mailArray.forEach((obj) => {
 			axios
 				.get(
-					`https://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=18950017&sCepDestino=${
+					`http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=18950017&sCepDestino=${
 						cep.split('-')[0]
 					}${
 						cep.split('-')[1]
