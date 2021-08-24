@@ -1,0 +1,38 @@
+.footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background-color: $secondary-bg-color;
+	border-top: 3px solid $primary-main-color;
+	padding: 20px;
+
+	.footer__message {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		flex-wrap: wrap;
+
+		span {
+			color: $primary-text-color;
+		}
+		svg {
+			color: $third-main-color;
+		}
+	}
+}
+
+@media (max-width: 440px) {
+	.footer {
+		padding: 20px 0;
+		.footer__message {
+			span {
+				text-align: center;
+				color: $primary-text-color;
+			}
+			svg {
+				color: $third-main-color;
+			}
+		}
+	}
+}

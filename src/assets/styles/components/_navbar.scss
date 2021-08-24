@@ -1,0 +1,124 @@
+.navbar {
+	height: 80px;
+	width: 100vw;
+	border-bottom: 3px solid $primary-main-color;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: $secondary-bg-color;
+
+	img {
+		height: 35px;
+		margin-left: 80px;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.navbar__info {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 60px;
+		margin-right: 30px;
+
+		.navbar__infoCart {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			// gap: 5px;
+
+			h1 {
+				text-transform: uppercase;
+				font-size: 0.7rem;
+				font-weight: 600;
+			}
+
+			.infoCart__cart {
+				border-radius: 20px;
+				padding: 2px 20px;
+				&:hover {
+					background-color: $primary-hover;
+
+					.MuiButton-label {
+						svg {
+							transform: scale(1.5) rotate(20deg);
+						}
+					}
+				}
+				.MuiTouchRipple-root {
+					color: rgb(83, 60, 185);
+				}
+				.MuiButton-label {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					gap: 10px;
+					p {
+						font-size: 1.1rem;
+						font-weight: 600;
+						color: $primary-main-color;
+					}
+					svg {
+						transition: all 0.3s ease-in-out;
+						transform: scale(1.5);
+						color: $primary-main-color;
+						margin-bottom: 3px;
+					}
+				}
+			}
+		}
+		.navbar__infoUser {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 30px;
+
+			svg {
+				transform: scale(1);
+				color: $primary-text-color;
+			}
+			.MuiBadge-badge {
+				height: 15px;
+				min-width: 15px !important;
+				width: 15px !important;
+				margin-right: 4px;
+				margin-top: 2px;
+			}
+			.MuiAvatar-root {
+				background-color: $primary-main-color;
+				width: 50px;
+				height: 50px;
+				font-size: 2rem;
+			}
+		}
+	}
+}
+
+@media (max-width: 440px) {
+	.navbar {
+		position: fixed;
+		z-index: 10000;
+		img {
+			margin-left: 20px;
+		}
+
+		.navbar__info {
+			gap: 0;
+			margin-right: 20px;
+
+			.navbar__infoCart {
+				.infoCart__cart {
+					h1 {
+						display: block;
+					}
+				}
+			}
+			.navbar__infoUser {
+				gap: 10px;
+			}
+		}
+	}
+}

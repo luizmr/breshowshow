@@ -1,0 +1,183 @@
+.MuiDialog-container {
+	.MuiPaper-root {
+		.MuiDialogTitle-root,
+		.MuiDialogContent-root,
+		.MuiDialogActions-root {
+			padding: 12px 24px;
+		}
+		.MuiDialogContent-root {
+			.MuiDialogContentText-root {
+				display: flex;
+				flex-direction: column;
+
+				.cep {
+					display: flex;
+					flex-direction: row;
+					justify-content: flex-start;
+					align-items: center;
+					max-width: 125px;
+					gap: 10px;
+					margin: 10px auto;
+					button {
+						padding: 5px;
+
+						svg {
+							color: #25d366;
+						}
+					}
+
+					.MuiIconButton-root.Mui-disabled {
+						svg {
+							color: #5d7682;
+						}
+					}
+				}
+
+				.correio {
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+					align-items: center;
+					height: 68px;
+
+					div {
+						width: 150px;
+						margin: 5px auto;
+						span {
+							color: #00416b;
+						}
+						span:nth-child(1) {
+							font-weight: 600;
+						}
+					}
+				}
+			}
+		}
+		.MuiDialogTitle-root {
+			h2 {
+				color: $primary-text-color;
+			}
+		}
+	}
+	.MuiFormControl-root {
+		width: 100%;
+
+		.MuiInputBase-root,
+		.MuiInputBase-root:hover {
+			border-color: $primary-text-color;
+		}
+		.MuiInput-underline:hover:not(.Mui-disabled):before {
+			border-bottom: 1px solid $primary-text-color;
+		}
+		label.Mui-focused {
+			color: $primary-text-color;
+		}
+	}
+	.button__common {
+		border-radius: 20px;
+		padding: 5px 15px;
+		.MuiButton-label {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 10px;
+
+			a {
+				font-size: 1rem;
+				font-weight: 600;
+				text-decoration: none;
+				color: $secondary-main-color;
+			}
+			svg {
+				transition: all 0.3s ease-in-out;
+				transform: scale(1.5);
+				margin-bottom: 3px;
+			}
+		}
+	}
+	.button__clear {
+		&:hover {
+			background-color: transparent;
+			.MuiButton-label {
+				svg {
+					transform: scale(1.7);
+				}
+			}
+		}
+		.MuiTouchRipple-root {
+			color: rgba(246, 68, 107, 1);
+		}
+		.MuiButton-label {
+			p {
+				color: $secondary-main-color;
+				font-weight: 600;
+			}
+			svg {
+				color: $secondary-main-color;
+			}
+		}
+	}
+	.button__whatsapp {
+		background-color: #25d366;
+		&:hover {
+			background-color: #25d366;
+
+			.MuiButton-label {
+				svg:last-child {
+					transform: scale(1.5) translateX(5px);
+				}
+			}
+		}
+		.MuiTouchRipple-root {
+			color: rgb(64, 199, 114);
+		}
+		.MuiButton-label {
+			a {
+				color: $secondary-bg-color;
+			}
+			svg {
+				color: $secondary-bg-color;
+			}
+
+			svg:first-child {
+				margin-top: 2px;
+			}
+		}
+	}
+	.button__disabled {
+		background-color: #b0bec5;
+		pointer-events: none;
+		&:hover {
+			background-color: #b0bec5;
+
+			.MuiButton-label {
+				svg:last-child {
+					transform: scale(1.5) translateX(5px);
+				}
+			}
+		}
+		.MuiTouchRipple-root {
+			color: rgb(64, 199, 114);
+		}
+		.MuiButton-label {
+			a {
+				color: #5d7682;
+			}
+			svg {
+				color: #5d7682;
+			}
+
+			svg:first-child {
+				margin-top: 2px;
+			}
+		}
+	}
+}
+
+@media (max-width: 440px) {
+	.MuiDialogActions-root {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+}
