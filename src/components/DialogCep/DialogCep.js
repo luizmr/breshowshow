@@ -86,6 +86,7 @@ const DialogCep = ({
 					{
 						headers: {
 							'Content-Type': 'application/xml',
+							'Access-Control-Allow-Origin': '*',
 						},
 					},
 				)
