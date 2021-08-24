@@ -84,10 +84,19 @@ const DialogCep = ({
 				)
 				.then((response) => {
 					var xml = new XMLParser().parseFromString(response.data);
+					console.log(xml.children[0].children[1].value);
 					if (obj === '04510') {
-						setPacValue(xml.children[0].children[1].value);
+						setPacValue(
+							xml.children[0].children[1].value === '0,00'
+								? ''
+								: xml.children[0].children[1].value,
+						);
 					} else {
-						setSedexValue(xml.children[0].children[1].value);
+						setSedexValue(
+							xml.children[0].children[1].value === '0,00'
+								? ''
+								: xml.children[0].children[1].value,
+						);
 					}
 				})
 				.catch((err) => {
