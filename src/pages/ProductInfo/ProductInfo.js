@@ -5,9 +5,6 @@ import CartButtons from '../../components/CartButtons/CartButtons';
 // components
 import ProductFullCard from '../../components/ProductFullCard/ProductFullCard';
 
-// json
-import ProductsData from '../../data/products.json';
-
 // utils
 import { connect } from 'react-redux';
 import { removeAllFromCart } from '../../store/ShoppingCart/cart-actions';

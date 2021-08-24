@@ -7,13 +7,12 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 // components
 import ProductFilter from './components/ProductFilter';
 
-// json
-import ProductsData from '../../data/products.json';
 import ProductsList from './components/ProductsList';
 
 const Products = () => {
 	const [filteredProducts, setFilteredProducts] = useState([]);
 	const [products, setProducts] = useState([]);
+	const [allProducts, setAllProducts] = useState([]);
 	const [pagination, setPagination] = useState(0);
 	const [page, setPage] = useState(1);
 	const [order, setOrder] = useState('1');
@@ -31,6 +30,7 @@ const Products = () => {
 		axios
 			.get('https://61212a58f5849d0017fb4193.mockapi.io/api/v1/clothes')
 			.then((response) => {
+				setAllProducts(response.data);
 				handleSearch(pageSize, order, response.data);
 			});
 	}, []);
@@ -58,7 +58,7 @@ const Products = () => {
 		setLoading(true);
 		const productFilteredByString = data
 			? filter
-				? ProductsData
+				? allProducts
 				: data.filter((obj) => {
 						return (
 							obj.name.toLowerCase().indexOf(searchString) !== -1
