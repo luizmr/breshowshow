@@ -1,20 +1,19 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Routes } from './routes';
 
 // json
-import Client from './data/client.json';
 
 // utils
 import { connect } from 'react-redux';
 import { setUser } from './store/Authentication/auth-actions';
 
 const App = ({ user, setUser }) => {
-	useEffect(() => {
-		if (!user) {
-			localStorage.setItem('client', JSON.stringify(Client.client));
-			setUser(Client.client);
-		}
-	}, [user]);
+	// useEffect(() => {
+	// 	if (!user) {
+	// 		localStorage.setItem('client', JSON.stringify(Client.client));
+	// 		setUser(Client.client);
+	// 	}
+	// }, [user]);
 	return (
 		<>
 			<Routes />
