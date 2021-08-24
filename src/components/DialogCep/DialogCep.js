@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import XMLParser from 'react-xml-parser';
 import MaskedInput from 'react-text-mask';
@@ -13,6 +13,8 @@ import { IconButton, Tooltip } from '@material-ui/core';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
+import ConvertToBrl from '../../utils/convertToBrl';
+import ReducePrice from '../../utils/reducePrice';
 
 function TextMaskCustom(props) {
 	const { inputRef, ...other } = props;
@@ -37,9 +39,14 @@ const DialogCep = ({
 	sedexValue,
 	pacValue,
 	setPacValue,
+	cart,
 }) => {
 	const [cep, setCep] = useState(
 		localStorage.getItem('cep') ? localStorage.getItem('cep') : '',
+	);
+
+	const [formatMessage, setFormatMessage] = useState(
+		'Além disso, gostei dos produtos abaixo: ',
 	);
 
 	const handleClose = () => {
@@ -108,6 +115,26 @@ const DialogCep = ({
 				});
 		});
 	};
+
+	useEffect(() => {
+		if (cart.length) {
+			let newMessage = ['Além disso, gostei dos produtos abaixo: '];
+			cart.forEach((obj, index) => {
+				newMessage.push(
+					`%0A*${index + 1}) ${obj.name.toUpperCase()} (cód: ${
+						obj.id
+					})*%0A      Quantidade: ${obj.quantity}%0A      Tamanho: ${
+						obj.size
+					}%0A      Total: *${ConvertToBrl(
+						obj.quantity * obj.price,
+					)}*%0A`,
+				);
+			});
+			const reducedValues = ReducePrice(cart);
+			newMessage.push(`%0A*Valor total: ${ConvertToBrl(reducedValues)}*`);
+			setFormatMessage(newMessage.join(''));
+		}
+	}, [cart]);
 
 	return (
 		<Dialog
@@ -185,7 +212,9 @@ const DialogCep = ({
 				>
 					<FaWhatsapp />
 					<a
-						href={`https://wa.me/+5514981333862/?text=Olá, gostaria de saber mais informações sobre a entrega e frete para o meu CEP: *${cep}*`}
+						href={`https://wa.me/+5514981333862/?text=Olá, gostaria de saber mais informações sobre a entrega e frete para o meu CEP: *${cep}*%0A${
+							cart.length > 0 && formatMessage
+						}`}
 						target="_blank"
 						rel="noreferrer"
 					>

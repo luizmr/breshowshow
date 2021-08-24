@@ -86,6 +86,7 @@ const TotalCard = ({ cart }) => {
 				sedexValue={sedexValue}
 				setSedexValue={setSedexValue}
 				setPacValue={setPacValue}
+				cart={cart}
 			/>
 		</>
 	);
