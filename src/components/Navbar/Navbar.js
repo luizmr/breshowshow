@@ -35,7 +35,7 @@ const Navbar = ({ user, cart }) => {
 			/>
 			<div className="navbar__info">
 				<div className="navbar__infoCart">
-					<h1>Breshowshow</h1>
+					<h1>Breshow</h1>
 					<Button
 						className="infoCart__cart"
 						onClick={() => history.push('/cart')}

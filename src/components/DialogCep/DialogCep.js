@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import XMLParser from 'react-xml-parser';
+// import axios from 'axios';
+// import XMLParser from 'react-xml-parser';
 import MaskedInput from 'react-text-mask';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -8,8 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Button from '@material-ui/core/Button';
-import { FaSearchDollar, FaWhatsapp } from 'react-icons/fa';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { FaWhatsapp } from 'react-icons/fa';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -25,28 +24,20 @@ function TextMaskCustom(props) {
 			ref={(ref) => {
 				inputRef(ref ? ref.inputElement : null);
 			}}
-			mask={[/[1-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
+			mask={[/[0-9]/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]}
 			placeholderChar={'\u2000'}
 			showMask
 		/>
 	);
 }
 
-const DialogCep = ({
-	open,
-	setOpen,
-	setSedexValue,
-	sedexValue,
-	pacValue,
-	setPacValue,
-	cart,
-}) => {
+const DialogCep = ({ open, setOpen, cart }) => {
 	const [cep, setCep] = useState(
 		localStorage.getItem('cep') ? localStorage.getItem('cep') : '',
 	);
 
 	const [formatMessage, setFormatMessage] = useState(
-		'Além disso, gostei dos produtos abaixo: ',
+		'Além disso, gostei dos produtos abaixo:',
 	);
 
 	const handleClose = () => {
@@ -56,66 +47,66 @@ const DialogCep = ({
 		) {
 			localStorage.removeItem('cep');
 			setCep('');
-			setSedexValue('');
-			setPacValue('');
+			// setSedexValue('');
+			// setPacValue('');
 		}
 		setOpen(false);
 	};
 
 	const handleSubmit = () => {
 		localStorage.setItem('cep', cep);
-		setSedexValue('');
-		setPacValue('');
+		// setSedexValue('');
+		// setPacValue('');
 		setOpen(false);
 	};
 
-	const searchCepValues = () => {
-		// 04510 pac
-		// 04014 sedex
-		setPacValue('⏳');
-		setSedexValue('⏳');
-		const mailArray = ['04510', '04014'];
-		mailArray.forEach((obj) => {
-			axios
-				.get(
-					`https://thingproxy.freeboard.io/fetch/http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=18950017&sCepDestino=${
-						cep.split('-')[0]
-					}${
-						cep.split('-')[1]
-					}&nVlPeso=1&nCdFormato=1&nVlComprimento=18&nVlAltura=9&nVlLargura=13&sCdMaoPropria=n&nVlValorDeclarado=21&sCdAvisoRecebimento=n&nCdServico=${obj}&nVlDiametro=0&StrRetorno=xml`,
-					{
-						headers: {
-							'Content-Type': 'application/xml',
-							// 'Access-Control-Allow-Origin': '*',
-						},
-					},
-				)
-				.then((response) => {
-					var xml = new XMLParser().parseFromString(response.data);
-					console.log(xml.children[0].children[1].value);
-					if (obj === '04510') {
-						setPacValue(
-							xml.children[0].children[1].value === '0,00'
-								? ''
-								: xml.children[0].children[1].value,
-						);
-					} else {
-						setSedexValue(
-							xml.children[0].children[1].value === '0,00'
-								? ''
-								: xml.children[0].children[1].value,
-						);
-					}
-				})
-				.catch((err) => {
-					if (obj === '04510') {
-						setPacValue('Erro!');
-					} else {
-						setSedexValue('Erro!');
-					}
-				});
-		});
-	};
+	// const searchCepValues = () => {
+	// 	// 04510 pac
+	// 	// 04014 sedex
+	// 	setPacValue('⏳');
+	// 	setSedexValue('⏳');
+	// 	const mailArray = ['04510', '04014'];
+	// 	mailArray.forEach((obj) => {
+	// 		axios
+	// 			.get(
+	// 				`https://thingproxy.freeboard.io/fetch/http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=18950017&sCepDestino=${
+	// 					cep.split('-')[0]
+	// 				}${
+	// 					cep.split('-')[1]
+	// 				}&nVlPeso=1&nCdFormato=1&nVlComprimento=18&nVlAltura=9&nVlLargura=13&sCdMaoPropria=n&nVlValorDeclarado=21&sCdAvisoRecebimento=n&nCdServico=${obj}&nVlDiametro=0&StrRetorno=xml`,
+	// 				{
+	// 					headers: {
+	// 						'Content-Type': 'application/xml',
+	// 						// 'Access-Control-Allow-Origin': '*',
+	// 					},
+	// 				},
+	// 			)
+	// 			.then((response) => {
+	// 				var xml = new XMLParser().parseFromString(response.data);
+	// 				console.log(xml.children[0].children[1].value);
+	// 				if (obj === '04510') {
+	// 					setPacValue(
+	// 						xml.children[0].children[1].value === '0,00'
+	// 							? ''
+	// 							: xml.children[0].children[1].value,
+	// 					);
+	// 				} else {
+	// 					setSedexValue(
+	// 						xml.children[0].children[1].value === '0,00'
+	// 							? ''
+	// 							: xml.children[0].children[1].value,
+	// 					);
+	// 				}
+	// 			})
+	// 			.catch((err) => {
+	// 				if (obj === '04510') {
+	// 					setPacValue('Erro!');
+	// 				} else {
+	// 					setSedexValue('Erro!');
+	// 				}
+	// 			});
+	// 	});
+	// };
 
 	useEffect(() => {
 		if (cart.length) {
@@ -132,7 +123,11 @@ const DialogCep = ({
 				);
 			});
 			const reducedValues = ReducePrice(cart);
-			newMessage.push(`%0A*Valor total: ${ConvertToBrl(reducedValues)}*`);
+			newMessage.push(
+				`%0A*Valor total: ${ConvertToBrl(
+					reducedValues,
+				)} %2b FRETE* %0A%0A **FRETE: Ipaussu e Chavantes entrega grátis. Demais cidades à combinar.*`,
+			);
 			setFormatMessage(newMessage.join(''));
 		}
 	}, [cart]);
@@ -163,7 +158,7 @@ const DialogCep = ({
 								inputComponent={TextMaskCustom}
 							/>
 						</FormControl>
-						<Tooltip title="Calcular frete">
+						{/* <Tooltip title="Calcular frete">
 							<IconButton
 								disabled={
 									/^-?\d+$/.test(cep.split('-')[0]) &&
@@ -175,9 +170,9 @@ const DialogCep = ({
 							>
 								<FaSearchDollar />
 							</IconButton>
-						</Tooltip>
+						</Tooltip> */}
 					</div>
-					<div className="correio">
+					{/* <div className="correio">
 						<div>
 							<span>SEDEX: </span>
 							<span>{sedexValue}</span>
@@ -186,7 +181,7 @@ const DialogCep = ({
 							<span>PAC: </span>
 							<span>{pacValue}</span>
 						</div>
-					</div>
+					</div> */}
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
@@ -213,7 +208,7 @@ const DialogCep = ({
 				>
 					<FaWhatsapp />
 					<a
-						href={`https://wa.me/+5514981333862/?text=Olá, gostaria de saber mais informações sobre a entrega e frete para o meu CEP: *${cep}*%0A${
+						href={`https://wa.me/+5514981333862/?text=Olá, gostaria de saber mais informações sobre a entrega e frete para o meu CEP: *${cep}*%0A%0A${
 							cart.length > 0 && formatMessage
 						}`}
 						target="_blank"

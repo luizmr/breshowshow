@@ -1,5 +1,6 @@
-import React from 'react';
-import ModalImage from 'react-modal-image';
+import React, { useState } from 'react';
+import Slider from 'react-slick';
+import { Lightbox } from 'react-modal-image';
 
 // components
 import BaseComponent from '../ProductCardComponents/BaseComponent';
@@ -10,14 +11,32 @@ import TotalValueComponent from '../ProductCardComponents/TotalValueComponent';
 import TrashComponent from '../ProductCardComponents/TrashComponent';
 
 const ProductFullCardContent = ({ obj, product, setProduct }) => {
+	const settings = {
+		dots: true,
+		infinite: true,
+		speed: 500,
+		slidesToShow: 1,
+		slidesToScroll: 1,
+	};
+	const [image, setImage] = useState('');
 	return (
 		<div className="card__content">
 			<div className="content__img">
-				<ModalImage
-					small={obj.photos[0]}
-					large={obj.photos[0]}
-					alt={obj.name}
-				/>
+				<Slider {...settings}>
+					{obj.photos.map((el) => (
+						<div onClick={() => setImage(el)}>
+							<img src={el} alt={el} />
+						</div>
+					))}
+				</Slider>
+				{image.length > 0 && (
+					<Lightbox
+						small={image}
+						large={image}
+						onClose={() => setImage('')}
+						alt={obj.name}
+					/>
+				)}
 			</div>
 			<div className="content__info">
 				<div className="product__main">

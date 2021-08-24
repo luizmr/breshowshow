@@ -29,7 +29,11 @@ const CartButtons = ({ handleDeleteItems, cart, toPayment }) => {
 				);
 			});
 			const reducedValues = ReducePrice(cart);
-			newMessage.push(`%0A*Valor total: ${ConvertToBrl(reducedValues)}*`);
+			newMessage.push(
+				`%0A*Valor total: ${ConvertToBrl(
+					reducedValues,
+				)} %2b FRETE* %0A%0A **FRETE: Ipaussu e Chavantes entrega grátis. Demais cidades à combinar.*`,
+			);
 			setFormatMessage(newMessage.join(''));
 		}
 	}, [cart]);

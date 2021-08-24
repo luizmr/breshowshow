@@ -163,6 +163,11 @@
 			.products__pageFilter {
 				gap: 20px;
 
+				.products__searchbox,
+				.products__pageOrdenation {
+					padding-left: 10px;
+				}
+
 				.filter__search {
 					width: calc(100% - 80px);
 				}

@@ -14,8 +14,8 @@ import DialogCep from '../DialogCep/DialogCep';
 const TotalCard = ({ cart }) => {
 	const [finalPrice, setFinalPrice] = useState(0);
 	const [open, setOpen] = useState(false);
-	const [sedexValue, setSedexValue] = useState('');
-	const [pacValue, setPacValue] = useState('');
+	// const [sedexValue, setSedexValue] = useState('');
+	// const [pacValue, setPacValue] = useState('');
 	useEffect(() => {
 		if (cart.length) {
 			const reducedValues = ReducePrice(cart);
@@ -61,33 +61,26 @@ const TotalCard = ({ cart }) => {
 					<InfoDiv
 						title="Total:"
 						info={`${
-							pacValue.includes(',')
-								? ConvertToBrl(
-										finalPrice +
-											Number(pacValue.replace(',', '.')),
-								  )
-								: sedexValue.includes(',')
-								? ConvertToBrl(
-										finalPrice +
-											Number(
-												sedexValue.replace(',', '.'),
-											),
-								  )
-								: `${ConvertToBrl(finalPrice)} + Frete`
+							// pacValue.includes(',')
+							// 	? ConvertToBrl(
+							// 			finalPrice +
+							// 				Number(pacValue.replace(',', '.')),
+							// 	  )
+							// 	: sedexValue.includes(',')
+							// 	? ConvertToBrl(
+							// 			finalPrice +
+							// 				Number(
+							// 					sedexValue.replace(',', '.'),
+							// 				),
+							// 	  )
+							// 	: `${ConvertToBrl(finalPrice)} + Frete`
+							`${ConvertToBrl(finalPrice)} + Frete`
 						}`}
 						spanClass="info__string"
 					/>
 				</div>
 			</div>
-			<DialogCep
-				open={open}
-				setOpen={setOpen}
-				pacValue={pacValue}
-				sedexValue={sedexValue}
-				setSedexValue={setSedexValue}
-				setPacValue={setPacValue}
-				cart={cart}
-			/>
+			<DialogCep open={open} setOpen={setOpen} cart={cart} />
 		</>
 	);
 };

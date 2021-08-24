@@ -61,11 +61,16 @@ const Products = () => {
 				? allProducts
 				: data.filter((obj) => {
 						return (
-							obj.name.toLowerCase().indexOf(searchString) !== -1
+							obj.description
+								.toLowerCase()
+								.indexOf(searchString) !== -1
 						);
 				  })
 			: products.filter((obj) => {
-					return obj.name.toLowerCase().indexOf(searchString) !== -1;
+					return (
+						obj.description.toLowerCase().indexOf(searchString) !==
+						-1
+					);
 			  });
 
 		const productFilteredByOrder = filterByOrder(

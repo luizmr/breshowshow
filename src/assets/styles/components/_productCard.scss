@@ -72,19 +72,39 @@
 		justify-content: center;
 		align-items: top;
 		position: relative;
+		gap: 30px;
 
 		.content__img {
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			position: relative;
+			.slick-slider {
+				width: 150px;
+
+				.slick-prev:before,
+				.slick-next:before {
+					color: $primary-main-color !important;
+				}
+			}
+			.slick-slider {
+				touch-action: auto !important;
+			}
 			div {
 				img {
 					max-width: 150px !important;
-					max-height: 200px !important;
+					max-height: 180px !important;
 					object-fit: contain;
+					margin: 0 auto;
+
+					&:hover {
+						cursor: pointer;
+					}
 				}
 
+				.__react_modal_image__modal_container {
+					z-index: 10000;
+				}
 				.__react_modal_image__modal_content {
 					img {
 						max-width: 80% !important;
@@ -378,9 +398,6 @@
 							margin-bottom: 10px;
 						}
 					}
-				}
-				.__react_modal_image__icon_menu {
-					top: 80px !important;
 				}
 			}
 		}

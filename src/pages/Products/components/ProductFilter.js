@@ -21,12 +21,12 @@ export default function ProductFilter({
 }) {
 	return (
 		<>
-			<SearchBox>
+			<SearchBox className="products__searchbox">
 				<FaSearch onClick={() => handleSearch()} />
 				<div className="filter__search">
 					<input
 						type="text"
-						placeholder="Pesquisar"
+						placeholder="Pesquisar ... (tamanho, marca, produto, etc)"
 						onChange={(e) => handleSearchString(e.target.value)}
 						value={searchString}
 						onKeyDown={(e) => {
