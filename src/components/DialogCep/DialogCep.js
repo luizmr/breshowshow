@@ -78,7 +78,7 @@ const DialogCep = ({
 		mailArray.forEach((obj) => {
 			axios
 				.get(
-					`http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=18950017&sCepDestino=${
+					`https://thingproxy.freeboard.io/fetch/http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?nCdEmpresa=&sDsSenha=&sCepOrigem=18950017&sCepDestino=${
 						cep.split('-')[0]
 					}${
 						cep.split('-')[1]
@@ -86,7 +86,7 @@ const DialogCep = ({
 					{
 						headers: {
 							'Content-Type': 'application/xml',
-							'Access-Control-Allow-Origin': '*',
+							// 'Access-Control-Allow-Origin': '*',
 						},
 					},
 				)
