@@ -24,7 +24,7 @@ const ProductFullCardContent = ({ obj, product, setProduct }) => {
 			<div className="content__img">
 				<Slider {...settings}>
 					{obj.photos.map((el) => (
-						<div onClick={() => setImage(el)}>
+						<div key={el} onClick={() => setImage(el)}>
 							<img src={el} alt={el} />
 						</div>
 					))}

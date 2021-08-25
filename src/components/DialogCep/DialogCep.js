@@ -193,9 +193,11 @@ const DialogCep = ({ open, setOpen, cart, request = false }) => {
 								name="textmask"
 								variant="outlined"
 								id="formatted-text-mask-input"
+								autoFocus
 								inputComponent={TextMaskCustom}
 							/>
 						</FormControl>
+
 						{/* <Tooltip title="Calcular frete">
 							<IconButton
 								disabled={
@@ -210,16 +212,19 @@ const DialogCep = ({ open, setOpen, cart, request = false }) => {
 							</IconButton>
 						</Tooltip> */}
 					</div>
-					{/* <div className="correio">
+					<div className="correio">
 						<div>
+							<span>*Garantia do produto por hora do pedido</span>
+						</div>
+						{/* <div>
 							<span>SEDEX: </span>
 							<span>{sedexValue}</span>
 						</div>
 						<div>
 							<span>PAC: </span>
 							<span>{pacValue}</span>
-						</div>
-					</div> */}
+						</div> */}
+					</div>
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>

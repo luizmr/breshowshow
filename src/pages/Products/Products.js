@@ -63,13 +63,14 @@ const Products = () => {
 						return (
 							obj.description
 								.toLowerCase()
-								.indexOf(searchString) !== -1
+								.indexOf(searchString.toLowerCase()) !== -1
 						);
 				  })
 			: products.filter((obj) => {
 					return (
-						obj.description.toLowerCase().indexOf(searchString) !==
-						-1
+						obj.description
+							.toLowerCase()
+							.indexOf(searchString.toLowerCase()) !== -1
 					);
 			  });
 

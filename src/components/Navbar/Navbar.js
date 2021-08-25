@@ -40,14 +40,13 @@ const Navbar = ({ user, cart }) => {
 						className="infoCart__cart"
 						onClick={() => history.push('/cart')}
 					>
-						<FiShoppingCart />
 						<p>{ConvertToBrl(finalPrice)}</p>
 					</Button>
 				</div>
 				<div className="navbar__infoUser">
 					<IconButton aria-label="notification">
 						<Badge badgeContent={cart.length} color="secondary">
-							<FaRegBell />
+							<FiShoppingCart />
 						</Badge>
 					</IconButton>
 					<Avatar>{'U'}</Avatar>

@@ -1,9 +1,5 @@
 import React, { useEffect, useState, memo } from 'react';
 
-// material-ui/icons
-import { FaBarcode } from 'react-icons/fa';
-import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
-
 // utils
 import { connect } from 'react-redux';
 import ProductFullCardContent from './ProductFullCardContent';

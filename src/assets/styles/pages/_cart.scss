@@ -36,7 +36,8 @@
 	.cart {
 		width: 95vw;
 		gap: 30px;
-		padding: 30px 0 200px;
+		padding: 30px 0 50px;
+
 		.cart__summary {
 			grid-template-columns: 1fr;
 			grid-template-rows: 1fr 220px;
