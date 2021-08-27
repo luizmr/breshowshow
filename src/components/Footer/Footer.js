@@ -5,12 +5,12 @@ export const Footer = () => {
 	return (
 		<div className="footer">
 			<div className="footer__message">
-				<span>Sobre a entrega dos pedidos</span>
+				<p>Sobre a entrega dos pedidos</p>
 				<FiArrowRight />
-				<span>
+				<p>
 					Ipaussu e Chavantes: Frete grátis. Demais cidades: Entrega e
 					fretes a combinar.
-				</span>
+				</p>
 			</div>
 		</div>
 	);

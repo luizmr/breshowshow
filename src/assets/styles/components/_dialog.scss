@@ -16,7 +16,7 @@
 					justify-content: flex-start;
 					align-items: center;
 					max-width: 80px;
-					gap: 10px;
+
 					margin: 10px auto;
 					button {
 						padding: 5px;
@@ -80,7 +80,6 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			gap: 10px;
 
 			a {
 				font-size: 1rem;
@@ -92,6 +91,7 @@
 				transition: all 0.3s ease-in-out;
 				transform: scale(1.5);
 				margin-bottom: 3px;
+				margin-right: 10px;
 			}
 		}
 	}
@@ -178,6 +178,8 @@
 	.MuiDialogActions-root {
 		display: flex;
 		flex-direction: column;
-		gap: 20px;
+		button:nth-child(1) {
+			margin-bottom: 20px;
+		}
 	}
 }

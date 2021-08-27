@@ -10,14 +10,14 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 10px;
 		flex-wrap: wrap;
 
-		span {
+		p {
 			color: $primary-text-color;
 		}
 		svg {
 			color: $third-main-color;
+			margin: 0 10px;
 		}
 	}
 }
@@ -27,9 +27,10 @@
 		position: relative;
 		padding: 20px 0;
 		.footer__message {
-			span {
+			p {
 				text-align: center;
 				color: $primary-text-color;
+				margin: 5px 0;
 			}
 			svg {
 				color: $third-main-color;

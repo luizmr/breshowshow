@@ -105,7 +105,7 @@ const QuantityComponent = ({
 				>
 					<FiMinusCircle />
 				</IconButton>
-				<div>
+				<div className="input-div">
 					<input
 						min="0"
 						max={`${obj.quantity}`}

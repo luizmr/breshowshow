@@ -70,19 +70,12 @@ const CartButtons = ({ handleDeleteItems, cart, toPayment }) => {
 						>
 							{toPayment && <FaWhatsapp />}
 							{toPayment ? (
-								<p
-								// href={`https://wa.me/+5514981333862/?text=${formatMessage}`}
-								// target="_blank"
-								// rel="noreferrer"
-								>
-									Enviar pedido
-								</p>
+								<p>Enviar pedido</p>
 							) : (
 								<p>Ir para o Carrinho</p>
 							)}
 							<FiArrowRight />
 						</Button>
-
 						<Button
 							onClick={handleDeleteItems}
 							className="button__clear button__common"

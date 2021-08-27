@@ -3,12 +3,16 @@
 	justify-content: space-between;
 	width: 100%;
 	align-items: center;
+	margin-bottom: 30px;
 
 	.buttons__right {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 30px;
+
+		button:nth-child(1) {
+			margin-right: 30px;
+		}
 	}
 
 	.button__common {
@@ -18,12 +22,13 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			gap: 10px;
+
 			p,
 			a {
 				font-size: 1rem;
 				font-weight: 600;
 				text-decoration: none;
+				margin: 0 10px;
 			}
 			svg {
 				transition: all 0.3s ease-in-out;
@@ -149,7 +154,10 @@
 			grid-template-columns: 1fr;
 			justify-content: center;
 			align-items: center;
-			gap: 30px;
+			button:nth-child(1) {
+				margin-right: 0px;
+				margin-bottom: 30px;
+			}
 		}
 	}
 }
@@ -169,7 +177,10 @@
 		}
 
 		.buttons__right {
-			gap: 10px;
+			button:nth-child(1) {
+				margin-right: 0px;
+				margin-bottom: 10px;
+			}
 		}
 	}
 }
