@@ -5,7 +5,7 @@ const StorageComponent = ({ quantityAvailable }) => {
 	return (
 		<div className="detail__storage">
 			<p className="detail__title">Estoque</p>
-			{quantityAvailable < 1 ? (
+			{quantityAvailable >= 1 ? (
 				<div className="storage__full">
 					<FaWarehouse />
 					<span>{`${quantityAvailable} un`}</span>
