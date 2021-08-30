@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ProductFilter from './components/ProductFilter';
 
 import ProductsList from './components/ProductsList';
+import { db } from '../../config';
 
 const Products = () => {
 	const [filteredProducts, setFilteredProducts] = useState([]);
@@ -27,12 +28,23 @@ const Products = () => {
 	};
 
 	useEffect(() => {
-		axios
-			.get('https://61212a58f5849d0017fb4193.mockapi.io/api/v1/clothes')
-			.then((response) => {
-				setAllProducts(response.data);
-				handleSearch(pageSize, order, response.data);
+		// axios
+		// 	.get('https://61212a58f5849d0017fb4193.mockapi.io/api/v1/clothes')
+		// 	.then((response) => {
+		// 		setAllProducts(response.data);
+		// 		handleSearch(pageSize, order, response.data);
+		// 	});
+
+		let todoRef = db.collection('breshow-clothes');
+		todoRef.get().then(function (querySnapshot) {
+			let newItems = [];
+			querySnapshot.forEach(function (doc) {
+				newItems.push({ ...doc.data() });
 			});
+			console.log(newItems, 'newItems');
+			setAllProducts(newItems);
+			handleSearch(pageSize, order, newItems);
+		});
 	}, []);
 
 	const handleChangePage = (event, value) => {
@@ -110,14 +122,25 @@ const Products = () => {
 	const handleSearchString = (value) => {
 		setSearchString(value);
 		if (value === '') {
-			axios
-				.get(
-					'https://61212a58f5849d0017fb4193.mockapi.io/api/v1/clothes',
-				)
-				.then((response) => {
-					setProducts(response.data);
-					handleSearch(pageSize, order, response.data, true);
+			// axios
+			// 	.get(
+			// 		'https://61212a58f5849d0017fb4193.mockapi.io/api/v1/clothes',
+			// 	)
+			// 	.then((response) => {
+			// 		setProducts(response.data);
+			// 		handleSearch(pageSize, order, response.data, true);
+			// 	});
+
+			let todoRef = db.collection('breshow-clothes');
+			todoRef.get().then(function (querySnapshot) {
+				let newItems = [];
+				querySnapshot.forEach(function (doc) {
+					newItems.push({ ...doc.data() });
 				});
+				console.log(newItems, 'newItems');
+				setAllProducts(newItems);
+				handleSearch(pageSize, order, newItems, true);
+			});
 		}
 	};
 
