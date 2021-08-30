@@ -34,14 +34,12 @@ const Products = () => {
 		// 		setAllProducts(response.data);
 		// 		handleSearch(pageSize, order, response.data);
 		// 	});
-
-		let todoRef = db.collection('breshow-clothes');
-		todoRef.get().then(function (querySnapshot) {
+		let breshowRef = db.collection('breshow-clothes');
+		breshowRef.get().then(function (querySnapshot) {
 			let newItems = [];
 			querySnapshot.forEach(function (doc) {
 				newItems.push({ ...doc.data() });
 			});
-			console.log(newItems, 'newItems');
 			setAllProducts(newItems);
 			handleSearch(pageSize, order, newItems);
 		});
@@ -131,13 +129,12 @@ const Products = () => {
 			// 		handleSearch(pageSize, order, response.data, true);
 			// 	});
 
-			let todoRef = db.collection('breshow-clothes');
-			todoRef.get().then(function (querySnapshot) {
+			let breshowRef = db.collection('breshow-clothes');
+			breshowRef.get().then(function (querySnapshot) {
 				let newItems = [];
 				querySnapshot.forEach(function (doc) {
 					newItems.push({ ...doc.data() });
 				});
-				console.log(newItems, 'newItems');
 				setAllProducts(newItems);
 				handleSearch(pageSize, order, newItems, true);
 			});
