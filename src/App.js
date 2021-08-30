@@ -1,8 +1,6 @@
 import React from 'react';
 import { Routes } from './routes';
 
-// json
-
 // utils
 import { connect } from 'react-redux';
 import { setUser } from './store/Authentication/auth-actions';
