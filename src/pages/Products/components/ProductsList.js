@@ -19,7 +19,9 @@ const ProductsList = ({
 					{filteredProducts.length ? (
 						<>
 							{filteredProducts.map((obj) => (
-								<ProductSimpleCard obj={obj} key={obj.id} />
+								<div key={obj.id} style={{ padding: '10px' }}>
+									<ProductSimpleCard obj={obj} />
+								</div>
 							))}
 						</>
 					) : (
