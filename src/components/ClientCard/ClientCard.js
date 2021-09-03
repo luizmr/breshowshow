@@ -15,6 +15,8 @@ const ClientCard = () => {
 		cnpj: FormatCnpj('00000000000000'),
 	});
 
+	const clientStorage = localStorage.getItem('client');
+
 	useEffect(() => {
 		if (localStorage.getItem('client')) {
 			setClient({
@@ -24,7 +26,7 @@ const ClientCard = () => {
 				),
 			});
 		}
-	}, [localStorage.getItem('client')]);
+	}, [clientStorage]);
 
 	return (
 		<div className="summary__client">

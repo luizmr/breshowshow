@@ -3,7 +3,6 @@ import { useHistory } from 'react-router-dom';
 
 // material-ui/icons
 import { Badge, Avatar, IconButton, Button } from '@material-ui/core';
-import { FaRegBell } from 'react-icons/fa';
 import { FiShoppingCart } from 'react-icons/fi';
 
 // assets

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 
 // material-ui/icons
 import CircularProgress from '@material-ui/core/CircularProgress';

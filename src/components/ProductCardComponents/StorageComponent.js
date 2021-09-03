@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaMobileAlt, FaWarehouse } from 'react-icons/fa';
+import { FaWarehouse } from 'react-icons/fa';
 
 const StorageComponent = ({ quantityAvailable }) => {
 	return (

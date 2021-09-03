@@ -152,7 +152,7 @@ const DialogCep = ({ open, setOpen, cart, request = false }) => {
 			setFormatMessageRequest(newMessageRequest.join(''));
 			setFormatMessage(newMessage.join(''));
 		}
-	}, [cart]);
+	}, [cart, cep]);
 
 	return (
 		<Dialog

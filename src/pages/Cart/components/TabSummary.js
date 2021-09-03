@@ -2,7 +2,6 @@ import React from 'react';
 
 // components
 import ProductsCard from '../../../components/ProductsCard/ProductsCard';
-import ClientCard from '../../../components/ClientCard/ClientCard';
 import TotalCard from '../../../components/TotalCard/TotalCard';
 
 const TabSummary = ({ items, activeArray }) => {
