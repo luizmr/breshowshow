@@ -34,14 +34,17 @@ const Products = () => {
 		// 		handleSearch(pageSize, order, response.data);
 		// 	});
 		let breshowRef = db.collection('breshow-clothes');
-		breshowRef.get().then(function (querySnapshot) {
-			let newItems = [];
-			querySnapshot.forEach(function (doc) {
-				newItems.push({ ...doc.data() });
+		breshowRef
+			.where('sold', '==', false)
+			.get()
+			.then(function (querySnapshot) {
+				let newItems = [];
+				querySnapshot.forEach(function (doc) {
+					newItems.push({ ...doc.data() });
+				});
+				setAllProducts(newItems);
+				handleSearch(pageSize, order, newItems);
 			});
-			setAllProducts(newItems);
-			handleSearch(pageSize, order, newItems);
-		});
 	}, []);
 
 	const handleChangePage = (event, value) => {
@@ -129,14 +132,18 @@ const Products = () => {
 			// 	});
 
 			let breshowRef = db.collection('breshow-clothes');
-			breshowRef.get().then(function (querySnapshot) {
-				let newItems = [];
-				querySnapshot.forEach(function (doc) {
-					newItems.push({ ...doc.data() });
+
+			breshowRef
+				.where('sold', '==', false)
+				.get()
+				.then(function (querySnapshot) {
+					let newItems = [];
+					querySnapshot.forEach(function (doc) {
+						newItems.push({ ...doc.data() });
+					});
+					setAllProducts(newItems);
+					handleSearch(pageSize, order, newItems, true);
 				});
-				setAllProducts(newItems);
-				handleSearch(pageSize, order, newItems, true);
-			});
 		}
 	};
 

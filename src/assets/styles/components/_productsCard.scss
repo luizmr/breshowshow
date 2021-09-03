@@ -31,6 +31,22 @@
 		align-items: center;
 		.product__name {
 			text-transform: uppercase;
+			text-decoration: none;
+			color: $primary-text-color;
+		}
+
+		.product__name::after {
+			content: '';
+			width: 0px;
+			height: 1px;
+			display: block;
+			background: transparent;
+			transition: 300ms;
+		}
+
+		.product__name:hover::after {
+			background: $primary-text-color;
+			width: 100%;
 		}
 
 		.product__empty {

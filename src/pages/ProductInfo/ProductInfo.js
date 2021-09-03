@@ -32,6 +32,7 @@ const ProductInfo = ({ cart, removeAllFromCart }) => {
 
 		db.collection('breshow-clothes')
 			.where('id', '==', `${productId}`)
+			.where('sold', '==', false)
 			.get()
 			.then((querySnapshot) => {
 				querySnapshot.forEach((doc) => {
